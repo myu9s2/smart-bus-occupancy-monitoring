@@ -10,6 +10,14 @@ Proyek ini bertujuan untuk meningkatkan kenyamanan penumpang serta mendukung pen
 
 ---
 
+## Demo
+
+Coba simulasi secara langsung:
+
+**https://wokwi.com/projects/464832307027084289**
+
+---
+
 ## Fitur Utama
 
 ### Monitoring Kursi Secara Real-Time
