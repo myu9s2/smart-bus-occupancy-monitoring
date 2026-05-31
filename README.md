@@ -1,63 +1,65 @@
 # Smart Bus Occupancy Monitoring System
 
-## Overview
+## Deskripsi Proyek
 
-Smart Bus Occupancy Monitoring System is an IoT-based solution designed to monitor seat occupancy inside a bus in real time using ESP32 and Blynk. The system detects occupied and available seats, calculates occupancy percentage, displays remaining seat capacity, and sends alerts when the bus reaches a critical occupancy level.
+Sistem Monitoring Keterdudukan Kursi Bus merupakan solusi berbasis Internet of Things (IoT) yang dirancang untuk memantau kondisi keterisian kursi bus secara real-time menggunakan ESP32 dan Blynk.
 
-This project aims to improve passenger comfort and support smarter public transportation management through real-time monitoring.
+Sistem mampu mendeteksi kursi yang terisi maupun kosong, menghitung persentase okupansi, menampilkan jumlah kursi yang masih tersedia, serta memberikan peringatan ketika kapasitas bus mendekati penuh.
 
----
-
-## Features
-
-### Real-Time Seat Monitoring
-
-* Monitor 4 bus seats simultaneously.
-* Detect occupied and empty seats using analog sensors.
-
-### Occupancy Calculation
-
-* Calculate total occupied seats.
-* Calculate available seats.
-* Display occupancy percentage automatically.
-
-### Visual Indicators
-
-* Physical LED indicator for each seat.
-* Dashboard LED indicators in Blynk application.
-
-### Smart Warning System
-
-* Automatic warning when bus occupancy reaches 80% or higher.
-* Buzzer notification activated once per warning event.
-* Warning message displayed on dashboard.
-
-### Remote Monitoring
-
-* Monitor seat status from smartphone using Blynk.
-* Access occupancy information remotely via internet connection.
+Proyek ini bertujuan untuk meningkatkan kenyamanan penumpang serta mendukung pengelolaan transportasi umum yang lebih cerdas melalui pemantauan secara real-time.
 
 ---
 
-## Technologies Used
+## Fitur Utama
 
-### Hardware
+### Monitoring Kursi Secara Real-Time
+
+* Memantau 4 kursi bus secara bersamaan.
+* Mendeteksi status kursi terisi atau kosong menggunakan sensor analog.
+
+### Perhitungan Okupansi
+
+* Menghitung jumlah kursi yang terisi.
+* Menghitung jumlah kursi yang masih tersedia.
+* Menampilkan persentase okupansi secara otomatis.
+
+### Indikator Visual
+
+* LED fisik untuk setiap kursi.
+* LED indikator pada dashboard Blynk.
+
+### Sistem Peringatan Otomatis
+
+* Peringatan otomatis ketika okupansi mencapai 80% atau lebih.
+* Buzzer aktif satu kali setiap terjadi kondisi peringatan.
+* Pesan peringatan ditampilkan pada dashboard.
+
+### Monitoring Jarak Jauh
+
+* Memantau kondisi kursi melalui smartphone menggunakan aplikasi Blynk.
+* Mengakses informasi kapasitas bus melalui koneksi internet.
+
+---
+
+## Teknologi yang Digunakan
+
+### Perangkat Keras (Hardware)
 
 * ESP32 DevKit V1
-* 4 Analog Seat Sensors (simulated using potentiometers)
-* 4 LEDs
+* 4 Sensor Kursi Analog (disimulasikan menggunakan potensiometer)
+* 4 LED
 * Buzzer
 * Breadboard
-* Jumper Wires
+* Kabel Jumper
 
-### Software
+### Perangkat Lunak (Software)
 
 * Arduino IDE
 * ESP32 Framework
-* Blynk IoT Platform
-* Wokwi Simulator
+* Platform Blynk IoT
+* Simulator Wokwi
 
-### Libraries
+### Library
 
 * Blynk
 * WiFi
@@ -65,103 +67,126 @@ This project aims to improve passenger comfort and support smarter public transp
 
 ---
 
-## System Architecture
+## Arsitektur Sistem
 
-Seat Sensors
-↓
+```text
+Sensor Kursi
+      │
+      ▼
 ESP32
-↓
-Occupancy Processing
-↓
+      │
+      ▼
+Pemrosesan Data Okupansi
+      │
+      ▼
 Blynk Cloud
-↓
-Mobile Dashboard
+      │
+      ▼
+Dashboard Monitoring
+```
 
-Additional Outputs:
+Output tambahan:
 
-* Physical LEDs
-* Dashboard LEDs
-* Buzzer Alert
-
----
-
-## Pin Configuration
-
-| Component     | ESP32 Pin |
-| ------------- | --------- |
-| Seat Sensor 1 | GPIO 33   |
-| Seat Sensor 2 | GPIO 32   |
-| Seat Sensor 3 | GPIO 35   |
-| Seat Sensor 4 | GPIO 34   |
-| LED Seat 1    | GPIO 13   |
-| LED Seat 2    | GPIO 12   |
-| LED Seat 3    | GPIO 14   |
-| LED Seat 4    | GPIO 27   |
-| Buzzer        | GPIO 26   |
+* LED Fisik
+* LED Dashboard Blynk
+* Buzzer Peringatan
 
 ---
 
-## Blynk Dashboard Mapping
+## Konfigurasi Pin
 
-| Virtual Pin | Function                |
-| ----------- | ----------------------- |
-| V0          | Seat 1 Status           |
-| V1          | Seat 2 Status           |
-| V2          | Seat 3 Status           |
-| V3          | Seat 4 Status           |
-| V4          | Occupancy Percentage    |
-| V5          | Warning Status          |
-| V6          | Remaining Seats         |
-| V7          | Buzzer Indicator        |
-| V8          | Seat 1 Availability LED |
-| V9          | Seat 2 Availability LED |
-| V10         | Seat 3 Availability LED |
-| V11         | Seat 4 Availability LED |
+| Komponen       | Pin ESP32 |
+| -------------- | --------- |
+| Sensor Kursi 1 | GPIO 33   |
+| Sensor Kursi 2 | GPIO 32   |
+| Sensor Kursi 3 | GPIO 35   |
+| Sensor Kursi 4 | GPIO 34   |
+| LED Kursi 1    | GPIO 13   |
+| LED Kursi 2    | GPIO 12   |
+| LED Kursi 3    | GPIO 14   |
+| LED Kursi 4    | GPIO 27   |
+| Buzzer         | GPIO 26   |
 
 ---
 
-## System Workflow
+## Mapping Dashboard Blynk
 
-1. ESP32 reads analog values from seat sensors.
-2. Sensor values above threshold indicate occupied seats.
-3. LEDs turn on for occupied seats.
-4. Seat status is sent to Blynk dashboard.
-5. Occupancy percentage is calculated.
-6. Remaining seats are calculated.
-7. If occupancy reaches 80% or more:
-
-   * Warning message appears.
-   * Buzzer activates once.
-   * Warning indicator is enabled.
-8. Data is continuously updated every 500 ms.
-
----
-
-## Results
-
-The system successfully:
-
-* Detects occupied and empty seats.
-* Calculates occupancy percentage automatically.
-* Displays remaining seat capacity.
-* Sends real-time updates to Blynk dashboard.
-* Activates warning alerts when bus capacity is nearly full.
+| Virtual Pin | Fungsi                   |
+| ----------- | ------------------------ |
+| V0          | Status Kursi 1           |
+| V1          | Status Kursi 2           |
+| V2          | Status Kursi 3           |
+| V3          | Status Kursi 4           |
+| V4          | Persentase Okupansi      |
+| V5          | Status Peringatan        |
+| V6          | Jumlah Kursi Tersedia    |
+| V7          | Indikator Buzzer         |
+| V8          | LED Ketersediaan Kursi 1 |
+| V9          | LED Ketersediaan Kursi 2 |
+| V10         | LED Ketersediaan Kursi 3 |
+| V11         | LED Ketersediaan Kursi 4 |
 
 ---
 
-## Future Improvements
+## Cara Kerja Sistem
 
-* Replace potentiometers with actual pressure sensors.
-* Add GPS tracking for bus location monitoring.
-* Implement cloud database storage.
-* Develop occupancy prediction using Machine Learning.
-* Add passenger counting analytics dashboard.
+1. ESP32 membaca nilai analog dari sensor kursi.
+2. Nilai sensor dibandingkan dengan nilai ambang batas (threshold).
+3. Jika nilai melebihi threshold, kursi dianggap terisi.
+4. LED kursi akan menyala sesuai status keterisian.
+5. Status kursi dikirim ke dashboard Blynk.
+6. Sistem menghitung persentase okupansi.
+7. Sistem menghitung jumlah kursi yang masih tersedia.
+8. Jika okupansi mencapai 80% atau lebih:
+
+   * Pesan peringatan ditampilkan.
+   * Buzzer aktif satu kali.
+   * Indikator peringatan dinyalakan.
+9. Data diperbarui secara otomatis setiap 500 ms.
+
+---
+
+## Hasil Implementasi
+
+Sistem berhasil:
+
+* Mendeteksi kursi yang terisi dan kosong secara real-time.
+* Menghitung persentase okupansi secara otomatis.
+* Menampilkan jumlah kursi yang masih tersedia.
+* Mengirim data ke dashboard Blynk secara real-time.
+* Mengaktifkan sistem peringatan ketika kapasitas bus hampir penuh.
+
+---
+
+## Pengembangan Selanjutnya
+
+Beberapa pengembangan yang dapat dilakukan pada proyek ini:
+
+* Mengganti potensiometer dengan sensor tekanan (FSR) yang sesungguhnya.
+* Menambahkan fitur pelacakan lokasi bus menggunakan GPS.
+* Menyimpan data ke database cloud.
+* Mengembangkan prediksi okupansi menggunakan Machine Learning.
+* Menambahkan dashboard analitik jumlah penumpang.
+* Mengintegrasikan sistem dengan platform Smart Transportation.
+
+---
+
+## Kompetensi yang Ditunjukkan
+
+* Internet of Things (IoT)
+* Embedded Systems
+* ESP32 Programming
+* Sensor Integration
+* Real-Time Monitoring System
+* Cloud IoT Platform (Blynk)
+* Dashboard Development
+* System Architecture Design
 
 ---
 
 ## Author
 
-Mochammad Yuga Ranapraja
+**Mochammad Yuga Ranapraja**
 
-Informatics Student
+Mahasiswa Informatika
 Junior Data Science Intern at Vinix7
